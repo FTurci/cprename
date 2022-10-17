@@ -1,0 +1,33 @@
+#!/bin/bash
+# Francesco Turci 2022
+
+usage()
+{
+    echo "Usage: Copy files from [pattern] to the working directory replacing the character"/" with a suitable symbol. "
+    echo "       Use option -s to set the symbol."
+}
+symbol="-"
+
+# no_args="true"
+# while getopts sh: opt; do
+#     case "$opt" in
+#         s) 
+#             symbol=$OPTARG
+#             ;;
+#         h) 
+#             usage
+#             exit
+#             ;;
+#     esac
+# done
+
+# [[ "$no_args" == "true" ]] && { usage; exit 1; }
+
+# shift $(( OPTIND - 1 ))
+
+arr=$@
+for f in "$@" ; do
+    new=$(echo $f | tr / "${symbol}")
+    echo "Copying file '$f' to '$new'"
+    cp $f ./$new
+done
